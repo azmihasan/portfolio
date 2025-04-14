@@ -1,23 +1,16 @@
-import type { GatsbyConfig, PluginRef } from "gatsby"
-import "dotenv/config"
-
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-
-const config: GatsbyConfig = {
+const config = {
   siteMetadata: {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
-    // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-jodie/gatsby-config.mjs
-    siteTitle: `Jodie`,
-    siteTitleAlt: `Jodie - Gatsby Starter Portfolio`,
-    siteHeadline: `Jodie - Gatsby Theme from @lekoarts`,
-    siteUrl: `https://jodie.lekoarts.de`,
+    siteTitle: `Portfolio`,
+    siteTitleAlt: `Portfolio`,
+    siteHeadline: `Portfolio`,
+    siteUrl: `https://your-domain.com`,
     siteDescription: `Image-heavy photography portfolio with colorful accents & customizable pages. Includes adaptive image grids powered by CSS grid and automatic image integration into projects.`,
     siteImage: `/banner.jpg`,
     siteLanguage: `en`,
-    author: `@lekoarts_de`,
+    author: `@yourusername`,
   },
-  trailingSlash: `never`,
   plugins: [
     {
       resolve: `@lekoarts/gatsby-theme-jodie`,
@@ -25,7 +18,6 @@ const config: GatsbyConfig = {
       options: {
         navigation: [
           { name: `Projects`, slug: `/projects` },
-          { name: `Art`, slug: `/art` },
           { name: `About`, slug: `/about` },
         ],
       },
@@ -39,8 +31,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `jodie - @lekoarts/gatsby-theme-jodie`,
-        short_name: `jodie`,
+        name: `Portfolio`,
+        short_name: `Portfolio`,
         description: `Image-heavy photography portfolio with colorful accents & customizable pages. Includes adaptive image grids powered by CSS grid and automatic image integration into projects.`,
         start_url: `/`,
         background_color: `#ffffff`,
@@ -62,7 +54,7 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    shouldAnalyseBundle && {
+    process.env.ANALYSE_BUNDLE && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
       options: {
         analyzerMode: `static`,
@@ -70,7 +62,7 @@ const config: GatsbyConfig = {
         openAnalyzer: false,
       },
     },
-  ].filter(Boolean) as Array<PluginRef>,
+  ].filter(Boolean),
 }
 
-export default config
+module.exports = config 
